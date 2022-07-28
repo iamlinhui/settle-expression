@@ -1,12 +1,15 @@
 package com.holmes.settle.expression.common.element;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
  * 数值对象
  */
-public class SettleDecimal {
+public class SettleDecimal implements Comparable<SettleDecimal>, Serializable {
+
+    private static final long serialVersionUID = 1473372466393244983L;
 
     private final BigDecimal inner;
 
@@ -127,5 +130,10 @@ public class SettleDecimal {
     @Override
     public String toString() {
         return String.valueOf(inner);
+    }
+
+    @Override
+    public int compareTo(SettleDecimal o) {
+        return this.inner.compareTo(o.inner);
     }
 }
