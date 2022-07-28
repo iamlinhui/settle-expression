@@ -108,7 +108,7 @@ public class OptParse implements Parse {
                 return new BitNot();
             case '^':
                 exp.poll();
-                return new BitXro();
+                return new BitXor();
             case '?':
                 exp.poll();
                 return new TernaryOpt();

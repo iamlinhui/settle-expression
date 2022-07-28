@@ -7,7 +7,7 @@ import com.holmes.settle.expression.lang.opt.TwoTernary;
 /**
  * 异或
  */
-public class BitXro extends TwoTernary {
+public class BitXor extends TwoTernary {
     public int fetchPriority() {
         return 9;
     }
