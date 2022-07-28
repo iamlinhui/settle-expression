@@ -22,7 +22,7 @@ public class BitNot extends AbstractOpt {
 
     public Object calculate() {
         Integer rval = TypeConverter.convert(calculateItem(this.right), Integer.class);
-        return ~rval.getInner().intValue();
+        return ~rval;
     }
 
     public String fetchSelf() {
