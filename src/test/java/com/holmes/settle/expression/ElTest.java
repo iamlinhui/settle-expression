@@ -8,7 +8,7 @@ import com.holmes.settle.expression.common.segment.Segment;
 import com.holmes.settle.expression.common.segment.Segments;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.*;
 
 public class ElTest {
 
@@ -21,6 +21,46 @@ public class ElTest {
         days();
         max();
         question();
+        object();
+        array();
+        map();
+    }
+
+    public static void object() {
+        class Demo {
+            private final String name;
+
+            public String getName() {
+                return name;
+            }
+
+            public Demo(String name) {
+                this.name = name;
+            }
+        }
+        Demo demo = new Demo("吴彦祖");
+        Context context = Lang.context();
+        context.set("demo", demo);
+        System.out.println(El.eval(context, "demo.name"));
+    }
+
+    public static void array() {
+        List<Integer> array = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        Context context = Lang.context();
+        context.set("array", array);
+        System.out.println(El.eval(context, "array[7]"));
+    }
+
+    public static void map() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("a", "aaa");
+        map.put("b", "bbb");
+        map.put("c", "ccc");
+        map.put("d", "ddd");
+        Context context = Lang.context();
+        context.set("map", map);
+        System.out.println(El.eval(context, "map[a]"));
+        System.out.println(El.eval(context, "map[1]"));
     }
 
     public static void question() {
