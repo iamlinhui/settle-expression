@@ -16,6 +16,7 @@ public class TypeConverter {
         conversionService.addConverter(SettleDecimal.class, Float.class, SettleDecimal::floatValue);
         conversionService.addConverter(SettleDecimal.class, Byte.class, Number::byteValue);
         conversionService.addConverter(SettleDecimal.class, Long.class, SettleDecimal::longValue);
+        conversionService.addConverter(SettleDecimal.class, Short.class, SettleDecimal::shortValue);
         conversionService.addConverter(SettleDecimal.class, BigDecimal.class, SettleDecimal::bigDecimalValue);
         conversionService.addConverter(SettleDecimal.class, String.class, SettleDecimal::toString);
     }
