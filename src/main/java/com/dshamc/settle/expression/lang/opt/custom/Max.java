@@ -11,7 +11,7 @@ import java.util.List;
 public class Max implements RunMethod {
 
     public Object run(List<Object> param) {
-        if (param.size() <= 0) {
+        if (param.isEmpty()) {
             return null;
         }
         SettleDecimal n1 = (SettleDecimal) param.get(0);

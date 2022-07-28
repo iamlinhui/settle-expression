@@ -12,7 +12,7 @@ public class Days implements RunMethod {
 
     @Override
     public Object run(List<Object> param) {
-        if (param.size() <= 0) {
+        if (param.isEmpty()) {
             return null;
         }
         Date start = (Date) param.get(0);

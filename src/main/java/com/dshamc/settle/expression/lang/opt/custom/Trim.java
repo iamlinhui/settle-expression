@@ -11,7 +11,7 @@ import java.util.List;
 public class Trim implements RunMethod {
 
     public Object run(List<Object> fetchParam) {
-        if (fetchParam.size() <= 0) {
+        if (fetchParam.isEmpty()) {
             throw new ElException("trim方法参数错误");
         }
         String obj = (String) fetchParam.get(0);

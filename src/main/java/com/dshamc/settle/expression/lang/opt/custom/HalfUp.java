@@ -14,7 +14,7 @@ public class HalfUp implements RunMethod {
 
     @Override
     public Object run(List<Object> param) {
-        if (param.size() <= 0) {
+        if (param.isEmpty()) {
             return null;
         }
         SettleDecimal scale = (SettleDecimal) param.get(0);
