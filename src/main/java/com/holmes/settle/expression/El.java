@@ -82,8 +82,9 @@ public class El {
         Context main = new SimpleContext();
         for (String key : seg.keys()) {
             El el = els.get(key);
-            if (el == null)
+            if (el == null) {
                 el = new El(key);
+            }
             main.set(key, el.eval(ctx));
         }
         return String.valueOf(seg.render(main));
