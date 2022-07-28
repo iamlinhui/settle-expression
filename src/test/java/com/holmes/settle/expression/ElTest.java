@@ -20,10 +20,16 @@ public class ElTest {
         segment();
         days();
         max();
-        question();
+        ternary();
         object();
         array();
         map();
+        now();
+    }
+
+    public static void now() {
+        System.out.println(El.eval("now()"));
+        System.out.println(El.eval("now('yyyy-MM-dd')"));
     }
 
     public static void object() {
@@ -63,7 +69,7 @@ public class ElTest {
         System.out.println(El.eval(context, "map[1]"));
     }
 
-    public static void question() {
+    public static void ternary() {
 
         System.out.println(El.eval("1 > 2 ? 'aaa' : 'bbb'"));
         System.out.println(El.eval("1 < 2 ? 'ccc' : 'ddd'"));
@@ -115,7 +121,8 @@ public class ElTest {
     }
 
     public static void pmt() {
-        System.out.println(El.eval("((10000*0.006666666667*(0.006666666667+1).pow(3))/((0.006666666667+1).pow(3)-1)).off(half_up(2))"));
+        String el = "(10000*0.006666666667*(0.006666666667+1).pow(3)).div((0.006666666667+1).pow(3)-1,half_up(2))";
+        System.out.println(El.eval(el));
     }
 
     public static void calc() {
