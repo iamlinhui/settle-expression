@@ -47,7 +47,7 @@ public class ReversePolish {
      */
     public Object calculate(Context context, Queue<Object> rpn) {
         ec.setContext(context);
-        LinkedList<Object> operand = OperatorTree(rpn);
+        LinkedList<Object> operand = operatorTree(rpn);
         return calculate(operand);
     }
 
@@ -69,13 +69,13 @@ public class ReversePolish {
      * 预先编译
      */
     public void compile(Queue<Object> rpn) {
-        el = OperatorTree(rpn);
+        el = operatorTree(rpn);
     }
 
     /**
      * 转换成操作树
      */
-    private LinkedList<Object> OperatorTree(Queue<Object> rpn) {
+    private LinkedList<Object> operatorTree(Queue<Object> rpn) {
         LinkedList<Object> operand = new LinkedList<>();
         while (!rpn.isEmpty()) {
             if (rpn.peek() instanceof Operator) {
