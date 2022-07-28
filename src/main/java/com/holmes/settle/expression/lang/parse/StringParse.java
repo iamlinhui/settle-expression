@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class StringParse implements Parse {
 
-    private static final Pattern NUMBER_REGEX = Pattern.compile("^[-+]?([0-9]+)([.]([0-9]+))?$");
+    private static final Pattern NUMBER_REGEX = Pattern.compile("^[-+]?(\\d+)([.](\\d+))?$");
 
     @Override
     public Object fetchItem(CharQueue exp) {

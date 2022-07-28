@@ -8,7 +8,6 @@ import com.holmes.settle.expression.common.segment.Segment;
 import com.holmes.settle.expression.common.segment.Segments;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class ElTest {
@@ -36,10 +35,9 @@ public class ElTest {
         System.out.println(El.eval("((10000*0.006666666667*(0.006666666667+1).pow(3))/((0.006666666667+1).pow(3)-1)).scale(half_up(2))"));
 
         LocalDate localDate = LocalDate.of(2017, 2, 15);
-        Date start = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        context.set("start", start);
+        context.set("start", localDate);
         context.set("end", new Date());
-        System.out.println(El.eval(context, "1.234 / 3 * days(start,end)"));
+        System.out.println(El.eval(context, "days(start,end)"));
 
 
         System.out.println(El.eval("1 / 3 * 3"));
