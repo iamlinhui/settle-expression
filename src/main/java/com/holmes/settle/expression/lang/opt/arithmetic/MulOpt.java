@@ -16,7 +16,7 @@ public class MulOpt extends TwoTernary {
     public Object calculate() {
         SettleDecimal lval = TypeConverter.warp(calculateItem(this.left), SettleDecimal.class);
         SettleDecimal rval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
-        return lval.multiply(rval);
+        return lval.mul(rval);
     }
 
     public String fetchSelf() {

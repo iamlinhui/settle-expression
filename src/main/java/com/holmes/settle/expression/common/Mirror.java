@@ -222,7 +222,7 @@ public class Mirror<T> {
         }
         Method method = ReflectionUtils.findMethod(clazz, methodName, argsClazz);
         if (method == null) {
-            throw new ElException("method not find");
+            throw new ElException(String.format("[%s] method not find in [%s]", methodName, clazz.getName()));
         }
         return ReflectionUtils.invokeMethod(method, obj, args);
     }

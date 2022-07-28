@@ -16,10 +16,11 @@ public class OptParse implements Parse {
 
     @Override
     public Object fetchItem(CharQueue exp) {
+
         switch (exp.peek()) {
             case '+':
                 exp.poll();
-                return new PlusOpt();
+                return new AddOpt();
             case '-':
                 exp.poll();
                 return new SubOpt();
@@ -43,7 +44,7 @@ public class OptParse implements Parse {
                 switch (exp.peek()) {
                     case '=':
                         exp.poll();
-                        return new GTEOpt();
+                        return new GteOpt();
                     case '>':
                         exp.poll();
                         if (exp.peek() == '>') {
@@ -53,25 +54,25 @@ public class OptParse implements Parse {
                         return new RightShift();
                     default:
                 }
-                return new GTOpt();
+                return new GtOpt();
             case '<':
                 exp.poll();
                 switch (exp.peek()) {
                     case '=':
                         exp.poll();
-                        return new LTEOpt();
+                        return new LteOpt();
                     case '<':
                         exp.poll();
                         return new LeftShift();
                     default:
                 }
-                return new LTOpt();
+                return new LtOpt();
             case '=':
                 exp.poll();
                 switch (exp.peek()) {
                     case '=':
                         exp.poll();
-                        return new EQOpt();
+                        return new EqOpt();
                     default:
                 }
                 throw new ElException("表达式错误,请检查'='后是否有非法字符!");
@@ -80,10 +81,7 @@ public class OptParse implements Parse {
                 switch (exp.peek()) {
                     case '=':
                         exp.poll();
-                        return new NEQOpt();
-                    case '!':
-                        exp.poll();
-                        return new NullableOpt();
+                        return new NeqOpt();
                     default:
                 }
                 return new NotOpt();
@@ -92,10 +90,6 @@ public class OptParse implements Parse {
                 switch (exp.peek()) {
                     case '|':
                         exp.poll();
-                        if (exp.peek() == '|') {
-                            exp.poll();
-                            return new OrOpt2();
-                        }
                         return new OrOpt();
                     default:
                 }
@@ -117,11 +111,10 @@ public class OptParse implements Parse {
                 return new BitXro();
             case '?':
                 exp.poll();
-                return new QuestionOpt();
+                return new TernaryOpt();
             case ':':
                 exp.poll();
-                return new QuestionSelectOpt();
-
+                return new SelectOpt();
             case '.':
                 char p = exp.peek(1);
                 if (p != '\'' && p != '"' && !Character.isJavaIdentifierStart(p)) {

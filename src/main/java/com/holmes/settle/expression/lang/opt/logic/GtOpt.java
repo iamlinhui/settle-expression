@@ -1,19 +1,20 @@
 package com.holmes.settle.expression.lang.opt.logic;
 
 /**
- * 小于等于
+ * 大于
  */
-public class LTEOpt extends AbstractCompareOpt {
+public class GtOpt extends AbstractCompareOpt {
 
     public int fetchPriority() {
         return 6;
     }
 
     public Object calculate() {
-        return compare() <= 0;
+        return compare() > 0;
     }
 
     public String fetchSelf() {
-        return "<=";
+        return ">";
     }
+
 }

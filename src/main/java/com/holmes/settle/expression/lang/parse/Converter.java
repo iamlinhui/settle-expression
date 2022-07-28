@@ -31,7 +31,7 @@ public class Converter {
     /**
      * 表达式字符队列
      */
-    private CharQueue exp;
+    private final CharQueue exp;
     /**
      * 表达式项
      */
@@ -122,11 +122,6 @@ public class Converter {
                 dest.add(new FieldObj(obj.getVal()));
                 continue;
             }
-            // //普通的对象
-            // if(!(dest.getLast() instanceof AccessOpt) && !(rpn.peekFirst()
-            // instanceof MethodOpt)){
-            // continue;
-            // }
             dest.add(new IdentifierObj(obj.getVal()));
         }
         return dest;
@@ -136,7 +131,7 @@ public class Converter {
      * 解析数据
      */
     private Object parseItem() {
-        Object obj = Parse.NULL;
+        Object obj;
         for (Parse parse : parses) {
             obj = parse.fetchItem(exp);
             if (obj != Parse.NULL) {

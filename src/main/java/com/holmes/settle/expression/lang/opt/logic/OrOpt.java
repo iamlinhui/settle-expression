@@ -16,8 +16,7 @@ public class OrOpt extends TwoTernary {
         Object lval = calculateItem(left);
         if (null != lval) {
             if (!(lval instanceof Boolean)) {
-                // throw new ElException("操作数类型错误!");
-                if (Boolean.TRUE.equals(TypeConverter.warp(lval, Boolean.class))) {
+                if (TypeConverter.warp(lval, Boolean.class)) {
                     return true;
                 }
             } else if ((Boolean) lval) {
@@ -27,12 +26,9 @@ public class OrOpt extends TwoTernary {
         Object rval = calculateItem(right);
         if (null != rval) {
             if (!(rval instanceof Boolean)) {
-                // throw new ElException("操作数类型错误!");
                 return TypeConverter.warp(rval, Boolean.class);
             }
-            if ((Boolean) rval) {
-                return true;
-            }
+            return rval;
         }
         return false;
     }

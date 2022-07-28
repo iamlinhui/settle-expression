@@ -13,17 +13,17 @@ import com.holmes.settle.expression.lang.opt.TwoTernary;
  * 在进行运算的时候,是先运算':',而':'中将条件的判断委托到'?'当中.然后':'对象根据'?'中的返回
  * 结果分别读取'?'中的的左值或,':'的右值
  */
-public class QuestionSelectOpt extends TwoTernary {
+public class SelectOpt extends TwoTernary {
 
     public int fetchPriority() {
         return 13;
     }
 
     public Object calculate() {
-        if (!(left instanceof QuestionOpt)) {
+        if (!(left instanceof TernaryOpt)) {
             throw new ElException("三元表达式错误!");
         }
-        QuestionOpt qo = (QuestionOpt) left;
+        TernaryOpt qo = (TernaryOpt) left;
         Boolean cval = (Boolean) qo.calculate();
         if (cval) {
             return qo.getRight();

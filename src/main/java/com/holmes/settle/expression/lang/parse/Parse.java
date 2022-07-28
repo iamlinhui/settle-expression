@@ -11,7 +11,7 @@ public interface Parse {
      */
     Object NULL = new Object() {
         public String toString() {
-            return "/*el-null*/";
+            return "/*null*/";
         }
     };
 

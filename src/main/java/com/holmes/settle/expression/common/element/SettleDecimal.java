@@ -29,33 +29,33 @@ public class SettleDecimal {
     /**
      * 除
      */
-    public SettleDecimal divide(SettleDecimal divisor) {
+    public SettleDecimal div(SettleDecimal divisor) {
         return new SettleDecimal(inner.divide(divisor.inner, MathContext.DECIMAL128));
     }
 
-    public SettleDecimal divide(SettleDecimal divisor, Precision precision) {
+    public SettleDecimal div(SettleDecimal divisor, Precision precision) {
         return new SettleDecimal(inner.divide(divisor.inner, precision.getScale(), precision.getRoundingMode()));
     }
 
     /**
      * 乘
      */
-    public SettleDecimal multiply(SettleDecimal multiplicand, Precision precision) {
+    public SettleDecimal mul(SettleDecimal multiplicand, Precision precision) {
         return new SettleDecimal(inner.multiply(multiplicand.inner).setScale(precision.getScale(), precision.getRoundingMode()));
     }
 
-    public SettleDecimal multiply(SettleDecimal multiplicand) {
+    public SettleDecimal mul(SettleDecimal multiplicand) {
         return new SettleDecimal(inner.multiply(multiplicand.inner));
     }
 
     /**
      * 减
      */
-    public SettleDecimal subtract(SettleDecimal subtrahend) {
+    public SettleDecimal sub(SettleDecimal subtrahend) {
         return new SettleDecimal(inner.subtract(subtrahend.inner));
     }
 
-    public SettleDecimal subtract(SettleDecimal subtrahend, Precision precision) {
+    public SettleDecimal sub(SettleDecimal subtrahend, Precision precision) {
         return new SettleDecimal(inner.subtract(subtrahend.inner).setScale(precision.getScale(), precision.getRoundingMode()));
     }
 
@@ -106,7 +106,7 @@ public class SettleDecimal {
     /**
      * 取舍
      */
-    public SettleDecimal scale(Precision precision) {
+    public SettleDecimal off(Precision precision) {
         return new SettleDecimal(inner.setScale(precision.getScale(), precision.getRoundingMode()));
     }
 

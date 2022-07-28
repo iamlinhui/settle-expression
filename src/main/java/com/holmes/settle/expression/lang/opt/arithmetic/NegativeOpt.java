@@ -46,7 +46,7 @@ public class NegativeOpt extends AbstractOpt {
         if (prev instanceof LBracketOpt) {
             return true;
         }
-        if (prev instanceof PlusOpt) {
+        if (prev instanceof AddOpt) {
             return true;
         }
         if (prev instanceof MulOpt) {

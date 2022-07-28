@@ -20,7 +20,7 @@ public class AndOpt extends TwoTernary {
         }
 
         if (!(lval instanceof Boolean)) {
-            if (Boolean.FALSE.equals(TypeConverter.warp(lval, Boolean.class))) {
+            if (!TypeConverter.warp(lval, Boolean.class)) {
                 return false;
             }
         } else if (!(Boolean) lval) {
@@ -32,10 +32,9 @@ public class AndOpt extends TwoTernary {
             return false;
         }
         if (!(rval instanceof Boolean)) {
-            // throw new ElException("操作数类型错误!");
             return TypeConverter.warp(rval, Boolean.class);
         }
-        return (Boolean) rval;
+        return rval;
     }
 
     public String fetchSelf() {

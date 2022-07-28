@@ -69,7 +69,6 @@ public class StringParse implements Parse {
                 sb.append(' ');
                 break;
             case 'f':
-                //这个支持一下又何妨
                 sb.append('\f');
                 break;
             default:

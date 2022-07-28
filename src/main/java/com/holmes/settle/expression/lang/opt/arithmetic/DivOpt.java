@@ -17,7 +17,7 @@ public class DivOpt extends TwoTernary {
 
         SettleDecimal lval = TypeConverter.warp(calculateItem(this.left), SettleDecimal.class);
         SettleDecimal rval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
-        return lval.divide(rval);
+        return lval.div(rval);
     }
 
     public String fetchSelf() {

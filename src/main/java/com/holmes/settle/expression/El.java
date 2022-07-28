@@ -16,7 +16,7 @@ import java.util.Queue;
 public class El {
 
     private ReversePolish rc = null;
-    private CharSequence elstr = "";
+    private CharSequence el = "";
 
     public El() {
     }
@@ -25,7 +25,7 @@ public class El {
      * 预编译
      */
     public El(CharSequence cs) {
-        elstr = cs;
+        el = cs;
         ShuntingYard sy = new ShuntingYard();
         Queue<Object> rpn = sy.parseToRPN(cs.toString());
         rc = new ReversePolish(rpn);
@@ -57,7 +57,7 @@ public class El {
     }
 
     public String toString() {
-        return elstr.toString();
+        return el.toString();
     }
 
     /**

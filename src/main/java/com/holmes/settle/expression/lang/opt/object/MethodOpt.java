@@ -77,7 +77,7 @@ public class MethodOpt extends TwoTernary {
      */
     @SuppressWarnings("unchecked")
     private List<Object> fetchParam() {
-        List<Object> rvals = new ArrayList<Object>();
+        List<Object> rvals = new ArrayList<>();
         if (right != null) {
             if (right instanceof CommaOpt) {
                 rvals = (List<Object>) ((CommaOpt) right).calculate();

@@ -3,7 +3,7 @@ package com.holmes.settle.expression.lang.opt.logic;
 /**
  * 大于等于
  */
-public class GTEOpt extends AbstractCompareOpt {
+public class GteOpt extends AbstractCompareOpt {
 
     public int fetchPriority() {
         return 6;

@@ -1,20 +1,20 @@
 package com.holmes.settle.expression.lang.opt.logic;
 
 /**
- * 大于
+ * 不等于
  */
-public class GTOpt extends AbstractCompareOpt {
+public class NeqOpt extends AbstractCompareOpt {
 
     public int fetchPriority() {
         return 6;
     }
 
     public Object calculate() {
-        return compare() > 0;
+        return compare() != 0;
     }
 
     public String fetchSelf() {
-        return ">";
+        return "!=";
     }
 
 }

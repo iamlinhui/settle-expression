@@ -4,8 +4,8 @@ package com.holmes.settle.expression.common;
 import com.holmes.settle.expression.lang.opt.Operator;
 import com.holmes.settle.expression.lang.opt.arithmetic.LBracketOpt;
 import com.holmes.settle.expression.lang.opt.arithmetic.RBracketOpt;
-import com.holmes.settle.expression.lang.opt.logic.QuestionOpt;
-import com.holmes.settle.expression.lang.opt.logic.QuestionSelectOpt;
+import com.holmes.settle.expression.lang.opt.logic.TernaryOpt;
+import com.holmes.settle.expression.lang.opt.logic.SelectOpt;
 import com.holmes.settle.expression.lang.parse.Converter;
 
 import java.io.IOException;
@@ -56,10 +56,10 @@ public class ShuntingYard {
         //一般情况,即优先级小于栈顶,那么直接弹出来,添加到逆波兰表达式中
         while (!opts.isEmpty() && opts.peek().fetchPriority() <= current.fetchPriority()) {
             //三元表达式嵌套的特殊处理
-            if (opts.peek() instanceof QuestionOpt && current instanceof QuestionOpt) {
+            if (opts.peek() instanceof TernaryOpt && current instanceof TernaryOpt) {
                 break;
             }
-            if (opts.peek() instanceof QuestionOpt && current instanceof QuestionSelectOpt) {
+            if (opts.peek() instanceof TernaryOpt && current instanceof SelectOpt) {
                 rpn.add(opts.poll());
                 break;
             }

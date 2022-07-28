@@ -7,7 +7,7 @@ import com.holmes.settle.expression.lang.opt.TwoTernary;
 /**
  * "+"
  */
-public class PlusOpt extends TwoTernary {
+public class AddOpt extends TwoTernary {
 
     public int fetchPriority() {
         return 4;
