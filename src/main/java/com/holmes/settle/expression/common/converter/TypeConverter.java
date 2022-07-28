@@ -6,7 +6,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 
 import java.math.BigDecimal;
 
-public class TypeConverter extends DefaultConversionService {
+public class TypeConverter {
 
     static {
         DefaultConversionService conversionService = (DefaultConversionService) DefaultConversionService.getSharedInstance();
@@ -20,12 +20,12 @@ public class TypeConverter extends DefaultConversionService {
         conversionService.addConverter(SettleDecimal.class, String.class, SettleDecimal::toString);
     }
 
-    public static <T> T warp(Object source, Class<T> targetType) {
+    public static <T> T convert(Object source, Class<T> targetType) {
         ConversionService conversionService = DefaultConversionService.getSharedInstance();
         return conversionService.convert(source, targetType);
     }
 
-    public static boolean canWarp(Class<?> sourceType, Class<?> targetType) {
+    public static boolean canConvert(Class<?> sourceType, Class<?> targetType) {
         ConversionService conversionService = DefaultConversionService.getSharedInstance();
         return conversionService.canConvert(sourceType, targetType);
     }

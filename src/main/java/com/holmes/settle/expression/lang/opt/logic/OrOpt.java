@@ -16,7 +16,7 @@ public class OrOpt extends TwoTernary {
         Object lval = calculateItem(left);
         if (null != lval) {
             if (!(lval instanceof Boolean)) {
-                if (TypeConverter.warp(lval, Boolean.class)) {
+                if (TypeConverter.convert(lval, Boolean.class)) {
                     return true;
                 }
             } else if ((Boolean) lval) {
@@ -26,7 +26,7 @@ public class OrOpt extends TwoTernary {
         Object rval = calculateItem(right);
         if (null != rval) {
             if (!(rval instanceof Boolean)) {
-                return TypeConverter.warp(rval, Boolean.class);
+                return TypeConverter.convert(rval, Boolean.class);
             }
             return rval;
         }

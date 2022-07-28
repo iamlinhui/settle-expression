@@ -25,8 +25,8 @@ public class AddOpt extends TwoTernary {
             return lval.toString() + rval.toString();
         }
 
-        SettleDecimal nlval = TypeConverter.warp(calculateItem(this.left), SettleDecimal.class);
-        SettleDecimal nrval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
+        SettleDecimal nlval = TypeConverter.convert(calculateItem(this.left), SettleDecimal.class);
+        SettleDecimal nrval = TypeConverter.convert(calculateItem(this.right), SettleDecimal.class);
         return nlval.add(nrval);
     }
 

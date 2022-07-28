@@ -18,8 +18,8 @@ public class SubOpt extends TwoTernary {
     }
 
     public Object calculate() {
-        SettleDecimal lval = TypeConverter.warp(calculateItem(this.left), SettleDecimal.class);
-        SettleDecimal rval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
+        SettleDecimal lval = TypeConverter.convert(calculateItem(this.left), SettleDecimal.class);
+        SettleDecimal rval = TypeConverter.convert(calculateItem(this.right), SettleDecimal.class);
         return lval.sub(rval);
     }
 

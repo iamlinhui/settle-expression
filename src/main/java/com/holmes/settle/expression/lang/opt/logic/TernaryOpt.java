@@ -24,7 +24,7 @@ public class TernaryOpt extends TwoTernary {
         if (obj instanceof Boolean) {
             return obj;
         }
-        return TypeConverter.warp(obj, Boolean.class);
+        return TypeConverter.convert(obj, Boolean.class);
     }
 
     public String fetchSelf() {

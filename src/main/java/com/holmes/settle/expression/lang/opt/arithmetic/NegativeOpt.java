@@ -23,7 +23,7 @@ public class NegativeOpt extends AbstractOpt {
     }
 
     public Object calculate() {
-        SettleDecimal rval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
+        SettleDecimal rval = TypeConverter.convert(calculateItem(this.right), SettleDecimal.class);
         return rval.negate();
     }
 

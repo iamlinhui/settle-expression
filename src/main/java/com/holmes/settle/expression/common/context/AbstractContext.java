@@ -28,7 +28,7 @@ public abstract class AbstractContext implements Context {
     }
 
     public <T> T getAs(Class<T> type, String name) {
-        return TypeConverter.warp(get(name), type);
+        return TypeConverter.convert(get(name), type);
     }
 
     public <T> T getAs(Class<T> type, String name, T dft) {
@@ -36,7 +36,7 @@ public abstract class AbstractContext implements Context {
         if (null == obj) {
             return dft;
         }
-        return TypeConverter.warp(obj, type);
+        return TypeConverter.convert(obj, type);
     }
 
     public int getInt(String name) {

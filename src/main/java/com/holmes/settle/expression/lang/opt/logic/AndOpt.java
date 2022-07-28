@@ -20,7 +20,7 @@ public class AndOpt extends TwoTernary {
         }
 
         if (!(lval instanceof Boolean)) {
-            if (!TypeConverter.warp(lval, Boolean.class)) {
+            if (!TypeConverter.convert(lval, Boolean.class)) {
                 return false;
             }
         } else if (!(Boolean) lval) {
@@ -32,7 +32,7 @@ public class AndOpt extends TwoTernary {
             return false;
         }
         if (!(rval instanceof Boolean)) {
-            return TypeConverter.warp(rval, Boolean.class);
+            return TypeConverter.convert(rval, Boolean.class);
         }
         return rval;
     }

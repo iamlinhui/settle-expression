@@ -1,7 +1,6 @@
 package com.holmes.settle.expression.lang.opt.bit;
 
 import com.holmes.settle.expression.common.converter.TypeConverter;
-import com.holmes.settle.expression.common.element.SettleDecimal;
 import com.holmes.settle.expression.lang.opt.AbstractOpt;
 
 import java.util.Queue;
@@ -22,7 +21,7 @@ public class BitNot extends AbstractOpt {
     }
 
     public Object calculate() {
-        SettleDecimal rval = TypeConverter.warp(calculateItem(this.right), SettleDecimal.class);
+        Integer rval = TypeConverter.convert(calculateItem(this.right), Integer.class);
         return ~rval.getInner().intValue();
     }
 

@@ -26,10 +26,10 @@ public class ArrayOpt extends TwoTernary {
             Map<?, ?> om = (Map<?, ?>) lval;
             return om.get(right.toString());
         } else if (lval instanceof List) {
-            Integer index = TypeConverter.warp(rval, Integer.class);
+            Integer index = TypeConverter.convert(rval, Integer.class);
             return ((List) lval).get(index);
         }
-        return Array.get(lval, TypeConverter.warp(rval, Integer.class));
+        return Array.get(lval, TypeConverter.convert(rval, Integer.class));
     }
 
     public String fetchSelf() {

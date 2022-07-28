@@ -27,7 +27,7 @@ public class NotOpt extends AbstractOpt {
         if (rval instanceof Boolean) {
             return !(Boolean) rval;
         }
-        return !TypeConverter.warp(rval, Boolean.class);
+        return !TypeConverter.convert(rval, Boolean.class);
     }
 
     public String fetchSelf() {

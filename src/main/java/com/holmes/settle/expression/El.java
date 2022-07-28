@@ -44,7 +44,7 @@ public class El {
 
     public <T> T eval(Context context, Class<T> clazz) {
         Object result = eval(context);
-        return TypeConverter.warp(result, clazz);
+        return TypeConverter.convert(result, clazz);
     }
 
     public static <T> T eval(String val, Class<T> clazz) {
@@ -53,7 +53,7 @@ public class El {
 
     public static <T> T eval(Context context, String val, Class<T> clazz) {
         Object result = eval(context, val);
-        return TypeConverter.warp(result, clazz);
+        return TypeConverter.convert(result, clazz);
     }
 
     /**
