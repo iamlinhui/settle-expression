@@ -18,7 +18,7 @@ public class Down implements RunMethod {
             return null;
         }
         SettleDecimal scale = (SettleDecimal) param.get(0);
-        return new Precision(scale.getInner().intValue(), RoundingMode.DOWN);
+        return new Precision(scale.intValue(), RoundingMode.DOWN);
     }
 
     @Override

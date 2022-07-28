@@ -11,12 +11,12 @@ public class TypeConverter {
     static {
         DefaultConversionService conversionService = (DefaultConversionService) DefaultConversionService.getSharedInstance();
         conversionService.addConverter(new SettleDecimalConverter());
-        conversionService.addConverter(SettleDecimal.class, Integer.class, source -> source.getInner().intValue());
-        conversionService.addConverter(SettleDecimal.class, Double.class, source -> source.getInner().doubleValue());
-        conversionService.addConverter(SettleDecimal.class, Float.class, source -> source.getInner().floatValue());
-        conversionService.addConverter(SettleDecimal.class, Byte.class, source -> source.getInner().byteValue());
-        conversionService.addConverter(SettleDecimal.class, Long.class, source -> source.getInner().longValue());
-        conversionService.addConverter(SettleDecimal.class, BigDecimal.class, SettleDecimal::getInner);
+        conversionService.addConverter(SettleDecimal.class, Integer.class, SettleDecimal::intValue);
+        conversionService.addConverter(SettleDecimal.class, Double.class, SettleDecimal::doubleValue);
+        conversionService.addConverter(SettleDecimal.class, Float.class, SettleDecimal::floatValue);
+        conversionService.addConverter(SettleDecimal.class, Byte.class, Number::byteValue);
+        conversionService.addConverter(SettleDecimal.class, Long.class, SettleDecimal::longValue);
+        conversionService.addConverter(SettleDecimal.class, BigDecimal.class, SettleDecimal::bigDecimalValue);
         conversionService.addConverter(SettleDecimal.class, String.class, SettleDecimal::toString);
     }
 

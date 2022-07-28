@@ -1,15 +1,13 @@
 package com.holmes.settle.expression.common.element;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * 数值对象
  */
-public class SettleDecimal implements Comparable<SettleDecimal>, Serializable {
-
-    private static final long serialVersionUID = 1473372466393244983L;
+public class SettleDecimal extends Number implements Comparable<SettleDecimal> {
 
     private final BigDecimal inner;
 
@@ -17,7 +15,7 @@ public class SettleDecimal implements Comparable<SettleDecimal>, Serializable {
         return new SettleDecimal(value);
     }
 
-    public BigDecimal getInner() {
+    public BigDecimal bigDecimalValue() {
         return inner;
     }
 
@@ -134,6 +132,43 @@ public class SettleDecimal implements Comparable<SettleDecimal>, Serializable {
 
     @Override
     public int compareTo(SettleDecimal o) {
-        return this.inner.compareTo(o.inner);
+        return inner.compareTo(o.inner);
+    }
+
+    @Override
+    public int intValue() {
+        return inner.intValue();
+    }
+
+    @Override
+    public long longValue() {
+        return inner.longValue();
+    }
+
+    @Override
+    public float floatValue() {
+        return inner.floatValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return inner.doubleValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SettleDecimal that = (SettleDecimal) o;
+        return Objects.equals(inner, that.inner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inner);
     }
 }

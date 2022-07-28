@@ -18,7 +18,7 @@ public class HalfDown implements RunMethod {
             return null;
         }
         SettleDecimal scale = (SettleDecimal) param.get(0);
-        return new Precision(scale.getInner().intValue(), RoundingMode.HALF_DOWN);
+        return new Precision(scale.intValue(), RoundingMode.HALF_DOWN);
     }
 
     @Override

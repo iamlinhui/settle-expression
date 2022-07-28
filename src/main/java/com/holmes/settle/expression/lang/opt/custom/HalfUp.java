@@ -18,7 +18,7 @@ public class HalfUp implements RunMethod {
             return null;
         }
         SettleDecimal scale = (SettleDecimal) param.get(0);
-        return new Precision(scale.getInner().intValue(), RoundingMode.HALF_UP);
+        return new Precision(scale.intValue(), RoundingMode.HALF_UP);
     }
 
     @Override

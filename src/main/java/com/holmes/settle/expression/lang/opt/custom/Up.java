@@ -18,7 +18,7 @@ public class Up implements RunMethod {
             return null;
         }
         SettleDecimal scale = (SettleDecimal) param.get(0);
-        return new Precision(scale.getInner().intValue(), RoundingMode.UP);
+        return new Precision(scale.intValue(), RoundingMode.UP);
     }
 
     @Override
