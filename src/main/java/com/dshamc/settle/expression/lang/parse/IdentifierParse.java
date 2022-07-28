@@ -5,8 +5,6 @@ import com.dshamc.settle.expression.lang.obj.IdentifierObj;
 
 /**
  * 标识符转换
- *
- * @author juqkai(juqkai @ gmail.com)
  */
 public class IdentifierParse implements Parse {
 

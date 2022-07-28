@@ -11,8 +11,6 @@ import com.dshamc.settle.expression.lang.opt.object.FetchArrayOpt;
 
 /**
  * 操作符转换器
- *
- * @author juqkai(juqkai @ gmail.com)
  */
 public class OptParse implements Parse {
 

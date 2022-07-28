@@ -23,8 +23,6 @@ import java.util.List;
 
 /**
  * 转换器,也就是用来将字符串转换成队列.
- *
- * @author juqkai(juqkai @ gmail.com)
  */
 public class Converter {
 
