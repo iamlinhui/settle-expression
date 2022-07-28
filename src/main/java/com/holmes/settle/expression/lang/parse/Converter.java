@@ -115,9 +115,9 @@ public class Converter {
                 continue;
             }
             // 属性对象
-            if (dest.size() > 0
+            if (!dest.isEmpty()
                     && dest.getLast() instanceof AccessOpt
-                    && rpn.size() > 0
+                    && !rpn.isEmpty()
                     && rpn.getFirst() instanceof AccessOpt) {
                 dest.add(new FieldObj(obj.getVal()));
                 continue;
