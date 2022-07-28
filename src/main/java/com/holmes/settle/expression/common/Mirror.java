@@ -25,7 +25,7 @@ public class Mirror<T> {
      * @return Mirror
      */
     public static <T> Mirror<T> me(Class<T> classOfT) {
-        return null == classOfT ? null : new Mirror<T>(classOfT);
+        return null == classOfT ? null : new Mirror<>(classOfT);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

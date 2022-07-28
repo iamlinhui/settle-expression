@@ -76,7 +76,7 @@ public class ReversePolish {
      * 转换成操作树
      */
     private LinkedList<Object> OperatorTree(Queue<Object> rpn) {
-        LinkedList<Object> operand = new LinkedList<Object>();
+        LinkedList<Object> operand = new LinkedList<>();
         while (!rpn.isEmpty()) {
             if (rpn.peek() instanceof Operator) {
                 Operator opt = (Operator) rpn.poll();

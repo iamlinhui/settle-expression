@@ -12,7 +12,7 @@ import java.util.Map;
 
 public abstract class AbstractContext implements Context {
 
-    public AbstractContext() {
+    protected AbstractContext() {
         super();
     }
 
@@ -105,22 +105,25 @@ public abstract class AbstractContext implements Context {
             if (obj instanceof Context) {
                 Context ctx = (Context) obj;
                 for (String key : ctx.keys()) {
-                    if (null == prefix)
+                    if (null == prefix) {
                         this.set(key, ctx.get(key));
-                    else
+                    } else {
                         this.set(prefix + key, ctx.get(key));
+                    }
                 }
             }
             // Map
             else if (obj instanceof Map<?, ?>) {
                 for (Map.Entry<?, ?> en : ((Map<?, ?>) obj).entrySet()) {
                     Object oKey = en.getKey();
-                    if (null == oKey)
+                    if (null == oKey) {
                         continue;
+                    }
                     String key = oKey.toString();
-                    if (null != prefix)
+                    if (null != prefix) {
                         key = prefix + key;
-                    this.set(key.toString(), en.getValue());
+                    }
+                    this.set(key, en.getValue());
                 }
             }
             // 普通 Java 对象

@@ -49,7 +49,7 @@ public class ShuntingYard {
         }
 
         //符号队列top元素优先级大于当前,则直接添加到
-        if (!opts.isEmpty() && opts.peek().fetchPriority() > current.fetchPriority()) {
+        if (opts.peek().fetchPriority() > current.fetchPriority()) {
             opts.addFirst(current);
             return;
         }
