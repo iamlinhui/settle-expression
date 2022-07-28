@@ -5,6 +5,7 @@ import com.holmes.settle.expression.common.ReversePolish;
 import com.holmes.settle.expression.common.ShuntingYard;
 import com.holmes.settle.expression.common.context.Context;
 import com.holmes.settle.expression.common.context.SimpleContext;
+import com.holmes.settle.expression.common.converter.TypeConverter;
 import com.holmes.settle.expression.common.segment.CharSegment;
 import com.holmes.settle.expression.lang.opt.RunMethod;
 import com.holmes.settle.expression.lang.opt.custom.CustomMake;
@@ -39,6 +40,20 @@ public class El {
             throw new ElException("没有进行预编译!");
         }
         return rc.calculate(context);
+    }
+
+    public <T> T eval(Context context, Class<T> clazz) {
+        Object result = eval(context);
+        return TypeConverter.warp(result, clazz);
+    }
+
+    public static <T> T eval(String val, Class<T> clazz) {
+        return eval(null, val, clazz);
+    }
+
+    public static <T> T eval(Context context, String val, Class<T> clazz) {
+        Object result = eval(context, val);
+        return TypeConverter.warp(result, clazz);
     }
 
     /**

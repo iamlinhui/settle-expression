@@ -15,6 +15,12 @@ public class ElTest {
 
 
     @Test
+    public void type() {
+        Integer eval = El.eval("1.223", Integer.class);
+        System.out.println(eval);
+    }
+
+    @Test
     public void now() {
         System.out.println(El.eval("now()"));
         System.out.println(El.eval("now('yyyy-MM-dd')"));

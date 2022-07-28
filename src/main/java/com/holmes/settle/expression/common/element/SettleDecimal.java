@@ -1,7 +1,7 @@
 package com.holmes.settle.expression.common.element;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
  * 数值对象
@@ -30,7 +30,7 @@ public class SettleDecimal {
      * 除
      */
     public SettleDecimal div(SettleDecimal divisor) {
-        return new SettleDecimal(inner.divide(divisor.inner, MathContext.DECIMAL128));
+        return new SettleDecimal(inner.divide(divisor.inner, 64, RoundingMode.DOWN));
     }
 
     public SettleDecimal div(SettleDecimal divisor, Precision precision) {

@@ -1,5 +1,6 @@
 package com.holmes.settle.expression.lang.opt.object;
 
+import com.holmes.settle.expression.common.converter.TypeConverter;
 import com.holmes.settle.expression.lang.opt.TwoTernary;
 
 import java.lang.reflect.Array;
@@ -25,9 +26,10 @@ public class ArrayOpt extends TwoTernary {
             Map<?, ?> om = (Map<?, ?>) lval;
             return om.get(right.toString());
         } else if (lval instanceof List) {
-            return ((List) lval).get(Integer.parseInt(rval.toString()));
+            Integer index = TypeConverter.warp(rval, Integer.class);
+            return ((List) lval).get(index);
         }
-        return Array.get(lval, Integer.parseInt(rval.toString()));
+        return Array.get(lval, TypeConverter.warp(rval, Integer.class));
     }
 
     public String fetchSelf() {
