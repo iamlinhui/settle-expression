@@ -13,7 +13,7 @@ public class SimpleContext extends AbstractContext {
     private final Map<String, Object> map;
 
     public SimpleContext() {
-        this(new HashMap<String, Object>());
+        this(new HashMap<>());
     }
 
     public SimpleContext(Map<String, Object> map) {
