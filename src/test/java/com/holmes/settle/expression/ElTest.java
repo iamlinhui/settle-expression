@@ -17,6 +17,14 @@ import java.util.*;
 
 public class ElTest {
 
+    @Test
+    public void contextFor() {
+        Context context = Lang.context();
+        Demo demo = new Demo("吴彦祖");
+        context.putAll(demo);
+        System.out.println(El.eval(context, "name")); // 吴彦祖
+    }
+
 
     @Test
     public void date() throws ParseException {
@@ -49,17 +57,7 @@ public class ElTest {
 
     @Test
     public void object() {
-        class Demo {
-            private final String name;
 
-            public String getName() {
-                return name;
-            }
-
-            public Demo(String name) {
-                this.name = name;
-            }
-        }
         Demo demo = new Demo("吴彦祖");
         Context context = Lang.context();
         context.set("demo", demo);
@@ -167,5 +165,22 @@ public class ElTest {
 
         System.out.println(El.eval("1 / 3 * 3"));
         System.out.println(El.eval("(1 / 3 * 3).off(half_up(2))"));
+    }
+
+
+    class Demo {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Demo(String name) {
+            this.name = name;
+        }
     }
 }
