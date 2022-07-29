@@ -67,7 +67,6 @@ public class Lang {
      * <li>数组
      * <li>集合
      * <li>Map
-     * <li>一般 Java 对象。 返回 1
      * </ul>
      *
      * @param obj
