@@ -8,10 +8,28 @@ import com.holmes.settle.expression.common.segment.Segment;
 import com.holmes.settle.expression.common.segment.Segments;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 public class ElTest {
+
+
+    @Test
+    public void date() throws ParseException {
+        Context context = Lang.context();
+        context.set("剩余本金", 1000);
+        context.set("年利率", 0.08);
+        context.set("起息日", new SimpleDateFormat("yyyy-MM-dd").parse("2022-07-02"));
+        context.set("结算日", new SimpleDateFormat("yyyy-MM-dd").parse("2022-07-21"));
+        BigDecimal eval = El.eval(context, "剩余本金*年利率/360*(结算日-1-起息日)", BigDecimal.class);
+        System.out.println(eval.setScale(2, RoundingMode.HALF_UP)); // 4.00
+
+        System.out.println(1000 * 0.08 / 360 * 18);//4.0
+    }
 
 
     @Test
