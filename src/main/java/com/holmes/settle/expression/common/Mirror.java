@@ -5,10 +5,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Mirror<T> {
 
@@ -147,9 +144,7 @@ public class Mirror<T> {
                 cc = cc.getSuperclass();
             }
         }
-        throw new NoSuchFieldException(String.format("Can NOT find field [%s] in class [%s] and it's parents classes",
-                name,
-                clazz.getName()));
+        throw new NoSuchFieldException(String.format("Can not find field [%s] in class [%s] and it's parents classes", name, clazz.getName()));
     }
 
     /**
@@ -165,6 +160,8 @@ public class Mirror<T> {
         return getGetter(fieldName, null);
     }
 
+    private final List<String> sizeKey = Arrays.asList("length", "size");
+
     /**
      * 优先通过 getter 获取字段值，如果没有，则直接获取字段值
      *
@@ -175,26 +172,22 @@ public class Mirror<T> {
      */
     @SuppressWarnings("rawtypes")
     public Object getValue(Object obj, String name) throws ElException {
+        if (obj != null) {
+            // 数组 || 集合 || Map
+            boolean isContainer = obj.getClass().isArray() || obj instanceof Collection || obj instanceof Map;
+            if (isContainer && sizeKey.contains(name)) {
+                return Lang.eleSize(obj);
+            }
+            if (obj instanceof Map) {
+                return ((Map) obj).get(name);
+            }
+        }
         try {
             return this.getGetter(name).invoke(obj);
         } catch (Exception e) {
             try {
                 return getValue(obj, getField(name));
-            } catch (NoSuchFieldException e1) {
-                if (obj != null) {
-                    if (obj.getClass().isArray() && "length".equals(name)) {
-                        return Lang.eleSize(obj);
-                    }
-                    if (obj instanceof Map) {
-                        return ((Map) obj).get(name);
-                    }
-                    if (obj instanceof List) {
-                        try {
-                            return ((List) obj).get(Integer.parseInt(name));
-                        } catch (Exception e2) {
-                        }
-                    }
-                }
+            } catch (NoSuchFieldException ignore) {
                 throw makeGetValueException(obj == null ? getType() : obj.getClass(), name, e);
             }
         }
@@ -259,10 +252,10 @@ public class Mirror<T> {
      * @throws NoSuchMethodException 没有找到 Getter
      */
     public Method getGetter(String fieldName, Class<?> returnType) throws NoSuchMethodException {
-        String fn = upperFirst(fieldName);
-        String getFn = "get" + fn;
-        String isFn = "is" + fn;
-        Method methodFn = null;
+        String function = upperFirst(fieldName);
+        String getMethod = "get" + function;
+        String isMethod = "is" + function;
+        Method fieldMethod = null;
         for (Method method : clazz.getMethods()) {
             if (method.getParameterTypes().length != 0) {
                 continue;
@@ -281,11 +274,11 @@ public class Mirror<T> {
                 method.setAccessible(true);
             }
 
-            if (getFn.equals(method.getName())) {
+            if (getMethod.equals(method.getName())) {
                 return method;
             }
 
-            if (isFn.equals(method.getName())) {
+            if (isMethod.equals(method.getName())) {
                 if (!Mirror.me(mrt).isBoolean()) {
                     throw new NoSuchMethodException();
                 }
@@ -293,11 +286,11 @@ public class Mirror<T> {
             }
 
             if (fieldName.equals(method.getName())) {
-                methodFn = method;
+                fieldMethod = method;
             }
         }
-        if (methodFn != null) {
-            return methodFn;
+        if (fieldMethod != null) {
+            return fieldMethod;
         }
         throw new NoSuchMethodException(String.format("Fail to find getter for [%s]->[%s]", clazz.getName(), fieldName));
     }
@@ -323,10 +316,7 @@ public class Mirror<T> {
     }
 
     private static RuntimeException makeGetValueException(Class<?> type, String name, Throwable e) {
-        return new ElException(String.format("Fail to get value for [%s]->[%s]",
-                type.getName(),
-                name),
-                e);
+        return new ElException(String.format("Fail to get value for [%s]->[%s]", type.getName(), name), e);
     }
 
     public List<Field> getFields() {

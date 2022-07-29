@@ -90,7 +90,7 @@ public class Lang {
         if (obj instanceof Map<?, ?>) {
             return ((Map<?, ?>) obj).size();
         }
-        // 其他的就是1
-        return 1;
+        // 其他
+        throw new ElException(String.format("This object [%s] can not calc size", obj.getClass().getName()));
     }
 }

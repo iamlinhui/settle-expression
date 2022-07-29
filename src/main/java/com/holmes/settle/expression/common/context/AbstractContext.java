@@ -3,8 +3,10 @@ package com.holmes.settle.expression.common.context;
 
 import com.holmes.settle.expression.common.Mirror;
 import com.holmes.settle.expression.common.converter.TypeConverter;
+import com.holmes.settle.expression.common.element.SettleDecimal;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +24,9 @@ public abstract class AbstractContext implements Context {
 
     public Object get(String name, Object dft) {
         Object obj = get(name);
-        if (null == obj)
+        if (null == obj) {
             return dft;
+        }
         return obj;
     }
 
@@ -69,30 +72,50 @@ public abstract class AbstractContext implements Context {
 
     public int getInt(String name, int dft) {
         Object obj = get(name);
-        if (null == obj)
+        if (null == obj) {
             return dft;
+        }
         return Integer.parseInt(obj.toString());
     }
 
     public String getString(String name, String dft) {
         Object obj = get(name);
-        if (null == obj)
+        if (null == obj) {
             return dft;
+        }
         return obj.toString();
     }
 
     public boolean getBoolean(String name, boolean dft) {
         Object obj = get(name);
-        if (null == obj)
+        if (null == obj) {
             return dft;
+        }
         return Boolean.parseBoolean(obj.toString());
     }
 
     public float getFloat(String name, float dft) {
         Object obj = get(name);
-        if (null == obj)
+        if (null == obj) {
             return dft;
+        }
         return Float.parseFloat(obj.toString());
+    }
+
+    public BigDecimal getBigDecimal(String name, BigDecimal dft) {
+        Object obj = get(name);
+        if (null == obj) {
+            return dft;
+        }
+        return new BigDecimal(obj.toString());
+    }
+
+    public SettleDecimal getSettleDecimal(String name, SettleDecimal dft) {
+        Object obj = get(name);
+        if (null == obj) {
+            return dft;
+        }
+        return new SettleDecimal(obj.toString());
     }
 
     public Context putAll(Object obj) {

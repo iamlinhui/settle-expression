@@ -17,7 +17,7 @@ public class ElTest {
     @Test
     public void type() {
         Integer eval = El.eval("1.223", Integer.class);
-        System.out.println(eval);
+        System.out.println(eval); // 1
     }
 
     @Test
@@ -50,7 +50,10 @@ public class ElTest {
         List<Integer> array = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
         Context context = Lang.context();
         context.set("array", array);
-        System.out.println(El.eval(context, "array[7]"));
+        System.out.println(El.eval(context, "array[5]"));
+        System.out.println(El.eval(context, "array.size"));
+        System.out.println(El.eval(context, "array.isEmpty()"));
+        System.out.println(El.eval(context, "!array.isEmpty()"));
     }
 
     @Test
@@ -62,15 +65,17 @@ public class ElTest {
         map.put("d", "ddd");
         Context context = Lang.context();
         context.set("map", map);
-        System.out.println(El.eval(context, "map[a]"));
-        System.out.println(El.eval(context, "map[1]"));
+
+        System.out.println(El.eval(context, "map[a]")); // aaa
+        System.out.println(El.eval(context, "map[1]")); // null
+        System.out.println(El.eval(context, "map.d")); //ddd
     }
 
     @Test
     public void ternary() {
 
-        System.out.println(El.eval("1 > 2 ? 'aaa' : 'bbb'"));
-        System.out.println(El.eval("1 < 2 ? 'ccc' : 'ddd'"));
+        System.out.println(El.eval("1 > 2 ? 'aaa' : 'bbb'")); //bbb
+        System.out.println(El.eval("1 < 2 ? 'ccc' : 'ddd'")); // ccc
 
 
         Context context = Lang.context();
@@ -79,14 +84,14 @@ public class ElTest {
         context.set("ccc", 789);
         context.set("ddd", 101112);
 
-        System.out.println(El.eval(context, "1 > 2 ? aaa : bbb"));
-        System.out.println(El.eval(context, "1 < 2 ? ccc : ddd"));
+        System.out.println(El.eval(context, "1 > 2 ? aaa : bbb")); // 456
+        System.out.println(El.eval(context, "1 < 2 ? ccc : ddd")); // 789
     }
 
     @Test
     public void max() {
-        System.out.println(El.eval("max(1,2,3,4,5,6,7,99,54)"));
-        System.out.println(El.eval("min(-100,2,3,4,5,6,7,99,54)"));
+        System.out.println(El.eval("max(1,2,3,4,5,6,7,99,54)")); // 99
+        System.out.println(El.eval("min(-100,2,3,4,5,6,7,99,54)")); // -100
     }
 
     @Test
@@ -94,14 +99,14 @@ public class ElTest {
         Segment segment = Segments.create("${aaa}");
         segment.set("aaa", "bbb");
         CharSequence render = segment.render();
-        System.out.println(render);
+        System.out.println(render); // bbb
     }
 
     @Test
     public void context() {
         Context context = Lang.context();
         context.set("abc", SettleDecimal.warp("1"));
-        System.out.println(El.eval(context, "abc.div(3,half_up(3))"));
+        System.out.println(El.eval(context, "abc.div(3,half_up(3))")); // 0.333
     }
 
     @Test
@@ -119,13 +124,13 @@ public class ElTest {
         context.set("end", new Date());
         System.out.println(El.eval(context, "days(start,end)"));
 
-        System.out.println(El.eval("days('2022-07-01',20220728)"));
+        System.out.println(El.eval("days('2022-07-01',20220728)")); // 27
     }
 
     @Test
     public void pmt() {
         String el = "(10000*0.006666666667*(0.006666666667+1).pow(3)).div((0.006666666667+1).pow(3)-1,half_up(2))";
-        System.out.println(El.eval(el));
+        System.out.println(El.eval(el)); // 3377.88
     }
 
     @Test
