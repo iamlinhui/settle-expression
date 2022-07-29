@@ -30,7 +30,7 @@ public class SubOpt extends TwoTernary {
         if (lval instanceof Date && rval instanceof Date) {
             LocalDate rTime = LocalDateTime.ofInstant(((Date) rval).toInstant(), ZoneId.systemDefault()).toLocalDate();
             LocalDate lTime = LocalDateTime.ofInstant(((Date) lval).toInstant(), ZoneId.systemDefault()).toLocalDate();
-            return lTime.toEpochDay() - rTime.toEpochDay();
+            return SettleDecimal.warp(String.valueOf(Math.max(lTime.toEpochDay() - rTime.toEpochDay(), 0L)));
         }
 
         // 日期减法 往前推移时间

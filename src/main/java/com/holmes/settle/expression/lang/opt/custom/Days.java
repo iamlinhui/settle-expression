@@ -1,6 +1,7 @@
 package com.holmes.settle.expression.lang.opt.custom;
 
 import com.holmes.settle.expression.common.ElException;
+import com.holmes.settle.expression.common.element.SettleDecimal;
 import com.holmes.settle.expression.lang.opt.RunMethod;
 import org.springframework.util.StringUtils;
 
@@ -23,7 +24,7 @@ public class Days implements RunMethod {
         }
         Date start = warp(param.get(0));
         Date end = warp(param.get(1));
-        return betweenDay(start, end);
+        return SettleDecimal.warp(String.valueOf(Math.max(betweenDay(start, end), 0L)));
     }
 
     private Date warp(Object obj) {
