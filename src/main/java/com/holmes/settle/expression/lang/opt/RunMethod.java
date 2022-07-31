@@ -10,7 +10,7 @@ import java.util.List;
  * 怎么实现自定义函数:<br>
  * <ul>
  * <li>实现本接口
- * <li>将自定义的配置信息写入META-INF/services/com.dshamc.settle.expression.lang.opt.RunMethod文件中
+ * <li>将自定义的配置信息写入META-INF/services/com.holmes.settle.expression.lang.opt.RunMethod文件中
  * </ul>
  */
 public interface RunMethod {
