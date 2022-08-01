@@ -18,6 +18,16 @@ import java.util.*;
 public class ElTest {
 
     @Test
+    public void order() {
+
+        // 第一步: 3 / 9 ; 第二步: 1 * 0.33
+        System.out.println(El.eval("1 * 3.div(9,half_up(2))"));
+
+        // 第一步: 1 * 3 ; 第二步: 3 / 9
+        System.out.println(El.eval("1 * 3 / 9"));
+    }
+
+    @Test
     public void contextFor() {
         Context context = Lang.context();
         Demo demo = new Demo("吴彦祖");
