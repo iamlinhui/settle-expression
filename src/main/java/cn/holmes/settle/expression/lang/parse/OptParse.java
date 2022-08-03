@@ -8,9 +8,6 @@ import cn.holmes.settle.expression.lang.opt.object.AccessOpt;
 import cn.holmes.settle.expression.lang.opt.object.ArrayOpt;
 import cn.holmes.settle.expression.lang.opt.object.CommaOpt;
 import cn.holmes.settle.expression.lang.opt.object.FetchArrayOpt;
-import com.holmes.settle.expression.lang.opt.arithmetic.*;
-import com.holmes.settle.expression.lang.opt.bit.*;
-import com.holmes.settle.expression.lang.opt.logic.*;
 
 /**
  * 操作符转换器
