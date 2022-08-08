@@ -1,6 +1,6 @@
 package cn.holmes.settle.expression.lang.parse;
 
-import cn.holmes.settle.expression.common.SpringApplication;
+import cn.holmes.settle.expression.common.SpringBean;
 import cn.holmes.settle.expression.lang.obj.AbstractObj;
 import cn.holmes.settle.expression.lang.obj.IdentifierObj;
 
@@ -27,7 +27,7 @@ public class IdentifierParse implements Parse {
                 return Boolean.FALSE;
             }
             if (sb.toString().startsWith("@")) {
-                return SpringApplication.getBean(sb.substring(1));
+                return SpringBean.getBean(sb.substring(1));
             }
             return new AbstractObj(sb.toString());
         }

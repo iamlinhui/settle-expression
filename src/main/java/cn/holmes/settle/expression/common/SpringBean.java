@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class SpringApplication implements ApplicationContextAware, DisposableBean {
+public class SpringBean implements ApplicationContextAware, DisposableBean {
 
     private static volatile ApplicationContext shareApplicationContext;
 
