@@ -49,6 +49,12 @@
 ```java
 
 @Test
+public void bean() {
+    // 从Spring IOC中取bean
+    System.out.println(El.eval("@springBean"));
+}
+
+@Test
 public void order() {
 
     // 第一步: 3 / 9 ; 第二步: 1 * 0.33
