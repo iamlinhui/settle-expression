@@ -1,12 +1,16 @@
 package cn.holmes.settle.expression;
 
 
-import cn.holmes.settle.expression.common.context.Context;
-import cn.holmes.settle.expression.common.segment.Segments;
 import cn.holmes.settle.expression.common.Lang;
+import cn.holmes.settle.expression.common.SpringApplication;
+import cn.holmes.settle.expression.common.context.Context;
 import cn.holmes.settle.expression.common.element.SettleDecimal;
 import cn.holmes.settle.expression.common.segment.Segment;
+import cn.holmes.settle.expression.common.segment.Segments;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,7 +19,14 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringApplication.class)
 public class ElTest {
+
+    @Test
+    public void bean() {
+        System.out.println(El.eval("@springApplication"));
+    }
 
     @Test
     public void order() {
