@@ -25,7 +25,7 @@ public class ElTest {
 
     @Test
     public void bean() {
-        System.out.println(El.eval("@springBean.getBean('springBean')"));
+        System.out.println(El.eval("@springBean"));
     }
 
     @Test
