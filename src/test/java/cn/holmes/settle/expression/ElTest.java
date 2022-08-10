@@ -23,6 +23,18 @@ import java.util.*;
 @ContextConfiguration(classes = SpringFramework.class)
 public class ElTest {
 
+    @Test
+    public void methodMap() {
+
+        HashMap<String, Object> a = new HashMap<>();
+        a.put("a", 123);
+
+        Context context = Lang.context();
+        context.set("A", "12");
+        context.set("map", a);
+        Object eval = El.eval(context, "map.a.div(100)");
+        System.out.println(eval);
+    }
 
     @Test
     public void method() {

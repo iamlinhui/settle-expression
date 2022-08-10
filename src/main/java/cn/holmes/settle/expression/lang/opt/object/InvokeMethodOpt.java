@@ -7,7 +7,6 @@ import java.util.Queue;
 /**
  * 方法执行
  * 以方法体右括号做为边界
- *
  */
 public class InvokeMethodOpt extends AbstractOpt {
     private Object left;
@@ -18,7 +17,7 @@ public class InvokeMethodOpt extends AbstractOpt {
 
     public Object calculate() {
         if (left instanceof MethodOpt) {
-            return ((MethodOpt) left).calculate();
+            return calculateItem(left);
         }
         return null;
     }

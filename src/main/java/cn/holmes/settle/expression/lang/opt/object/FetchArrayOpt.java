@@ -22,7 +22,7 @@ public class FetchArrayOpt extends AbstractOpt {
 
     public Object calculate() {
         if (left instanceof ArrayOpt) {
-            return ((ArrayOpt) left).calculate();
+            return calculateItem(left);
         }
         return null;
     }

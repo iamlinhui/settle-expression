@@ -1,8 +1,8 @@
 package cn.holmes.settle.expression.lang.opt.object;
 
 import cn.holmes.settle.expression.common.ElException;
-import cn.holmes.settle.expression.lang.opt.Operator;
 import cn.holmes.settle.expression.lang.obj.MethodObj;
+import cn.holmes.settle.expression.lang.opt.Operator;
 import cn.holmes.settle.expression.lang.opt.RunMethod;
 import cn.holmes.settle.expression.lang.opt.TwoTernary;
 import cn.holmes.settle.expression.lang.opt.custom.CustomMake;
@@ -49,7 +49,7 @@ public class MethodOpt extends TwoTernary {
     private RunMethod fetchMethod() {
         if (!(left instanceof AccessOpt)) {
             if (left instanceof MethodObj) {
-                final Object val = ((MethodObj) left).fetchVal();
+                final Object val = calculateItem(left);
                 if (val != null) {
                     if (val instanceof Method) {
                         return new CustomMake.StaticMethodRunMethod((Method) val);
@@ -88,7 +88,7 @@ public class MethodOpt extends TwoTernary {
         if (!rvals.isEmpty()) {
             for (int i = 0; i < rvals.size(); i++) {
                 if (rvals.get(i) instanceof Operator) {
-                    rvals.set(i, ((Operator) rvals.get(i)).calculate());
+                    rvals.set(i, calculateItem(rvals.get(i)));
                 }
             }
         }

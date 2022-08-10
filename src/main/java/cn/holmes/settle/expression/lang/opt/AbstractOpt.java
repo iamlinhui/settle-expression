@@ -1,8 +1,8 @@
 package cn.holmes.settle.expression.lang.opt;
 
-import cn.holmes.settle.expression.lang.obj.Elobj;
 import cn.holmes.settle.expression.common.ElException;
 import cn.holmes.settle.expression.common.element.SettleDecimal;
+import cn.holmes.settle.expression.lang.obj.Elobj;
 
 /**
  * 操作符抽象类
@@ -14,8 +14,9 @@ public abstract class AbstractOpt implements Operator {
     public abstract String fetchSelf();
 
     public boolean equals(Object obj) {
-        if (obj == null)
+        if (obj == null) {
             return false;
+        }
         if (obj.equals(fetchSelf())) {
             return true;
         }
@@ -46,12 +47,25 @@ public abstract class AbstractOpt implements Operator {
             return obj;
         }
         if (obj instanceof Elobj) {
-            return ((Elobj) obj).fetchVal();
+            return warp(((Elobj) obj).fetchVal());
         }
         if (obj instanceof Operator) {
-            return ((Operator) obj).calculate();
+            return warp(((Operator) obj).calculate());
         }
         throw new ElException("未知计算类型!" + obj);
 
+    }
+
+    protected Object warp(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        if (obj instanceof SettleDecimal) {
+            return obj;
+        }
+        if (obj instanceof Number) {
+            return SettleDecimal.warp(obj.toString());
+        }
+        return obj;
     }
 }

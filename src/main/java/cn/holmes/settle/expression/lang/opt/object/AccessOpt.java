@@ -1,10 +1,10 @@
 package cn.holmes.settle.expression.lang.opt.object;
 
+import cn.holmes.settle.expression.common.ElException;
+import cn.holmes.settle.expression.common.Mirror;
 import cn.holmes.settle.expression.common.context.Context;
 import cn.holmes.settle.expression.lang.obj.Elobj;
-import cn.holmes.settle.expression.common.ElException;
 import cn.holmes.settle.expression.lang.opt.Operator;
-import cn.holmes.settle.expression.common.Mirror;
 import cn.holmes.settle.expression.lang.opt.RunMethod;
 import cn.holmes.settle.expression.lang.opt.TwoTernary;
 
@@ -68,11 +68,8 @@ public class AccessOpt extends TwoTernary implements RunMethod {
      * 取得变得的值
      */
     public Object fetchVar() {
-        if (left instanceof Operator) {
-            return ((Operator) left).calculate();
-        }
-        if (left instanceof Elobj) {
-            return ((Elobj) left).fetchVal();
+        if (left instanceof Operator || left instanceof Elobj) {
+            return calculateItem(left);
         }
         return left;
     }
