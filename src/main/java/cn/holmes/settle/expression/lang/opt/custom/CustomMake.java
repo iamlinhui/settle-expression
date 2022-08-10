@@ -1,8 +1,9 @@
 package cn.holmes.settle.expression.lang.opt.custom;
 
-import cn.holmes.settle.expression.lang.opt.RunMethod;
 import cn.holmes.settle.expression.common.ElException;
 import cn.holmes.settle.expression.common.Mirror;
+import cn.holmes.settle.expression.common.converter.TypeConverter;
+import cn.holmes.settle.expression.lang.opt.RunMethod;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -65,7 +66,12 @@ public class CustomMake {
         }
 
         public Object run(List<Object> fetchParam) {
-            return Mirror.me(method.getDeclaringClass()).invoke(null, method.getName(), fetchParam.toArray());
+            Class<?>[] parameterTypes = method.getParameterTypes();
+            Object[] param = new Object[fetchParam.size()];
+            for (int i = 0; i < param.length; i++) {
+                param[i] = TypeConverter.convert(param[i], parameterTypes[i]);
+            }
+            return Mirror.me(method.getDeclaringClass()).invoke(null, method.getName(), param);
         }
 
         public String fetchSelf() {
