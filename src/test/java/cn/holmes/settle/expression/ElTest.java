@@ -2,7 +2,7 @@ package cn.holmes.settle.expression;
 
 
 import cn.holmes.settle.expression.common.Lang;
-import cn.holmes.settle.expression.common.SpringBean;
+import cn.holmes.settle.expression.common.SpringFramework;
 import cn.holmes.settle.expression.common.context.Context;
 import cn.holmes.settle.expression.common.element.SettleDecimal;
 import cn.holmes.settle.expression.common.segment.Segment;
@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringBean.class)
+@ContextConfiguration(classes = SpringFramework.class)
 public class ElTest {
 
 

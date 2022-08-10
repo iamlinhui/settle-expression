@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Configuration
-public class SpringBean implements ApplicationContextAware, DisposableBean, BeanPostProcessor {
+public class SpringFramework implements ApplicationContextAware, DisposableBean, BeanPostProcessor {
 
     private static volatile ApplicationContext shareApplicationContext;
 
