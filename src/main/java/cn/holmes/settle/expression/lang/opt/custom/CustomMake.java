@@ -69,7 +69,7 @@ public class CustomMake {
             Class<?>[] parameterTypes = method.getParameterTypes();
             Object[] param = new Object[fetchParam.size()];
             for (int i = 0; i < param.length; i++) {
-                param[i] = TypeConverter.convert(param[i], parameterTypes[i]);
+                param[i] = TypeConverter.convert(fetchParam.get(i), parameterTypes[i]);
             }
             return Mirror.me(method.getDeclaringClass()).invoke(null, method.getName(), param);
         }
