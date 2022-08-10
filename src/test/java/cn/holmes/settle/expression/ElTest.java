@@ -23,6 +23,15 @@ import java.util.*;
 @ContextConfiguration(classes = SpringBean.class)
 public class ElTest {
 
+
+    @Test
+    public void method() {
+        Context context = Lang.context();
+        context.set("A", "12");
+        Object eval = El.eval(context, "half_up(A)");
+        System.out.println(eval);
+    }
+
     @Test
     public void bean() {
         System.out.println(El.eval("@springBean"));

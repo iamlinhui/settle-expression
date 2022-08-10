@@ -1,7 +1,8 @@
 package cn.holmes.settle.expression.lang.opt.custom;
 
-import cn.holmes.settle.expression.lang.opt.RunMethod;
 import cn.holmes.settle.expression.common.ElException;
+import cn.holmes.settle.expression.common.converter.TypeConverter;
+import cn.holmes.settle.expression.lang.opt.RunMethod;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Trim implements RunMethod {
         if (fetchParam.isEmpty()) {
             throw new ElException("trim方法参数错误");
         }
-        String obj = (String) fetchParam.get(0);
+        String obj = TypeConverter.convert(fetchParam.get(0), String.class);
         return obj.trim();
     }
 

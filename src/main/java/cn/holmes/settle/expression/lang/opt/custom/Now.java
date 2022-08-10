@@ -1,5 +1,6 @@
 package cn.holmes.settle.expression.lang.opt.custom;
 
+import cn.holmes.settle.expression.common.converter.TypeConverter;
 import cn.holmes.settle.expression.lang.opt.RunMethod;
 
 import java.text.SimpleDateFormat;
@@ -15,7 +16,8 @@ public class Now implements RunMethod {
         if (fetchParam == null || fetchParam.isEmpty()) {
             return System.currentTimeMillis();
         }
-        return new SimpleDateFormat(fetchParam.get(0).toString()).format(new Date());
+        String pattern = TypeConverter.convert(fetchParam.get(0), String.class);
+        return new SimpleDateFormat(pattern).format(new Date());
     }
 
     public String fetchSelf() {
