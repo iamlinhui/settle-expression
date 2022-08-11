@@ -82,6 +82,10 @@ public class ElTest {
 
         Integer days = El.eval(context, "days(结算日,起息日)", Integer.class);
         System.out.println(days);
+
+        System.out.println(El.eval(context, "days(起息日,结算日)", Integer.class));
+
+        System.out.println(El.eval(context, "(结算日-起息日).div(3)", BigDecimal.class));
     }
 
 
