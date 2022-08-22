@@ -10,7 +10,7 @@ public interface Operator {
     /**
      * 优先级
      */
-    public int fetchPriority();
+    int fetchPriority();
 
     /**
      * 打包数据.
@@ -18,11 +18,11 @@ public interface Operator {
      *
      * @param operand 操作数
      */
-    public void wrap(Queue<Object> operand);
+    void wrap(Queue<Object> operand);
 
     /**
      * 计算
      */
-    public Object calculate();
+    Object calculate();
 
 }
