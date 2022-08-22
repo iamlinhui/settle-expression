@@ -47,7 +47,10 @@
 
 ### 用法例子
 ```java
-public class TestHolmes{
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringFramework.class)
+public class ElTest {
+    
     @Test
     public void bean() {
         // 从Spring IOC中取bean
