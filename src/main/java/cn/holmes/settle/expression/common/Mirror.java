@@ -261,8 +261,8 @@ public class Mirror<T> {
                 continue;
             }
             Class<?> mrt = method.getReturnType();
-            // 必须有返回类型
-            if ("void".equals(mrt.getName())) {
+            // 必须有返回类型 "void".equals(mrt.getName())
+            if (mrt == Void.TYPE) {
                 continue;
             }
             // 如果给了返回类型，用它判断一下

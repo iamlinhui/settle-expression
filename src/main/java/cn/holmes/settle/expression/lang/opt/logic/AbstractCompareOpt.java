@@ -1,8 +1,10 @@
 package cn.holmes.settle.expression.lang.opt.logic;
 
+import cn.holmes.settle.expression.common.converter.TypeConverter;
 import cn.holmes.settle.expression.lang.opt.TwoTernary;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public abstract class AbstractCompareOpt extends TwoTernary {
 
@@ -33,6 +35,13 @@ public abstract class AbstractCompareOpt extends TwoTernary {
         }
         if (lval instanceof Comparable && lval.getClass().isInstance(rval)) {
             return ((Comparable) lval).compareTo(rval);
+        }
+        // 日期和字符串比较
+        if (lval instanceof Date && rval instanceof String) {
+            return ((Date) lval).compareTo(TypeConverter.convert(rval, Date.class));
+        }
+        if (lval instanceof String && rval instanceof Date) {
+            return TypeConverter.convert(lval, Date.class).compareTo((Date) rval);
         }
         if (lval.equals(rval)) {
             return 0;

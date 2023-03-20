@@ -5,6 +5,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class TypeConverter {
 
@@ -19,6 +20,7 @@ public class TypeConverter {
         conversionService.addConverter(SettleDecimal.class, Short.class, SettleDecimal::shortValue);
         conversionService.addConverter(SettleDecimal.class, BigDecimal.class, SettleDecimal::bigDecimalValue);
         conversionService.addConverter(SettleDecimal.class, String.class, SettleDecimal::toString);
+        conversionService.addConverter(String.class, Date.class, new StringDateConverter());
     }
 
     public static <T> T convert(Object source, Class<T> targetType) {
