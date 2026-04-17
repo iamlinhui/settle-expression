@@ -91,6 +91,11 @@ public class ElTest {
 
     @Test
     public void type() {
+        Object result1 = El.eval("-3 > -6");
+        Object result2 = -3 > -6;
+        System.out.println(result1); // true
+        System.out.println(result2); // true
+
         Integer eval = El.eval("1.223", Integer.class);
         System.out.println(eval); // 1
     }

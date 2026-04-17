@@ -3,7 +3,8 @@ package cn.holmes.settle.expression.lang.opt.arithmetic;
 import cn.holmes.settle.expression.common.converter.TypeConverter;
 import cn.holmes.settle.expression.common.element.SettleDecimal;
 import cn.holmes.settle.expression.lang.opt.AbstractOpt;
-import cn.holmes.settle.expression.lang.opt.object.CommaOpt;
+import cn.holmes.settle.expression.lang.opt.Operator;
+import cn.holmes.settle.expression.lang.opt.object.InvokeMethodOpt;
 
 import java.util.Queue;
 
@@ -31,7 +32,7 @@ public class NegativeOpt extends AbstractOpt {
         return "-";
     }
 
-    public static boolean isNegetive(Object prev) {
+    public static boolean isNegative(Object prev) {
         if (prev == null) {
             return true;
         }
@@ -43,28 +44,12 @@ public class NegativeOpt extends AbstractOpt {
             // 最后一个
             prev = tmp[tmp.length - 1];
         }
-        if (prev instanceof LBracketOpt) {
-            return true;
+        // 右括号或方法调用后面的 '-' 是减法，不是负号
+        if (prev instanceof RBracketOpt || prev instanceof InvokeMethodOpt) {
+            return false;
         }
-        if (prev instanceof AddOpt) {
-            return true;
-        }
-        if (prev instanceof MulOpt) {
-            return true;
-        }
-        if (prev instanceof DivOpt) {
-            return true;
-        }
-        if (prev instanceof ModOpt) {
-            return true;
-        }
-        if (prev instanceof SubOpt) {
-            return true;
-        }
-        if (prev instanceof CommaOpt) {
-            return true;
-        }
-        return false;
+        // 任何操作符后面的 '-' 都是负号
+        return prev instanceof Operator;
     }
 
 }

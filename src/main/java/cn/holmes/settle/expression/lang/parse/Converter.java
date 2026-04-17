@@ -178,7 +178,7 @@ public class Converter {
             }
         }
         // 转换负号'-'
-        if (item instanceof SubOpt && NegativeOpt.isNegetive(prev)) {
+        if (item instanceof SubOpt && NegativeOpt.isNegative(prev)) {
             item = new NegativeOpt();
         }
         prev = item;

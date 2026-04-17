@@ -6,69 +6,51 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.LinkedList;
 
 /**
- * 字符队列默认实现.
+ * 字符队列默认实现. 基于char数组，避免Reader和LinkedList的开销
  */
 public class CharQueueDefault implements CharQueue {
 
     private final Logger logger = LoggerFactory.getLogger(CharQueueDefault.class);
 
-    private final Reader reader;
-    private final LinkedList<Integer> cache;
+    private final char[] chars;
     private int cursor;
+    private final int length;
 
     public CharQueueDefault(Reader reader) {
-        this.reader = reader;
-        cache = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
         try {
-            cursor = reader.read();
+            int c;
+            while ((c = reader.read()) != -1) {
+                sb.append((char) c);
+            }
         } catch (IOException e) {
             logger.debug("read error", e);
         }
+        this.chars = sb.toString().toCharArray();
+        this.cursor = 0;
+        this.length = chars.length;
     }
 
     public char peek() {
-        return (char) cursor;
+        return chars[cursor];
     }
 
     public char peek(int offset) {
-        if (offset == 0) {
-            return (char) cursor;
+        int index = cursor + offset;
+        if (index >= length) {
+            return (char) -1;
         }
-        //这个地方因为已经预读了cursor 所以,偏移量要向后移动一位
-        if (cache.size() > offset - 1) {
-            return (char) cache.get(offset - 1).intValue();
-        }
-        int t = 0;
-        for (int i = 0; i < offset - cache.size(); i++) {
-            try {
-                t = reader.read();
-                cache.add(t);
-            } catch (IOException e) {
-                logger.debug("read error", e);
-            }
-        }
-        return (char) t;
+        return chars[index];
     }
 
     public char poll() {
-        char x = (char) cursor;
-        try {
-            if (cache.isEmpty()) {
-                cursor = reader.read();
-            } else {
-                cursor = cache.poll();
-            }
-        } catch (IOException e) {
-            logger.debug("read error", e);
-        }
-        return x;
+        return chars[cursor++];
     }
 
     public boolean isEmpty() {
-        return cursor == -1;
+        return cursor >= length;
     }
 
 }

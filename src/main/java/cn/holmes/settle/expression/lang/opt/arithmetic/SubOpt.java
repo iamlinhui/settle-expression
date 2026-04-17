@@ -40,8 +40,8 @@ public class SubOpt extends TwoTernary {
             return Date.from(lTime.plusDays(-rDays).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         }
 
-        SettleDecimal nlval = TypeConverter.convert(calculateItem(this.left), SettleDecimal.class);
-        SettleDecimal nrval = TypeConverter.convert(calculateItem(this.right), SettleDecimal.class);
+        SettleDecimal nlval = TypeConverter.convert(lval, SettleDecimal.class);
+        SettleDecimal nrval = TypeConverter.convert(rval, SettleDecimal.class);
         return nlval.sub(nrval);
     }
 
